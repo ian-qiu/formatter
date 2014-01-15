@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
@@ -24,8 +25,8 @@ import javax.swing.JTextArea;
  */
 public class Formatter {
     
-    static final JTextArea t1 = new JTextArea(25,25);
-    static final JTextArea t2 = new JTextArea(25,25);
+    static final JTextArea t1 = new JTextArea(25,30);
+    static final JTextArea t2 = new JTextArea(25,30);
 
     /**
      * @param args the command line arguments
@@ -42,8 +43,10 @@ public class Formatter {
         jp.add(top,BorderLayout.NORTH);
         
         JPanel main = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        main.add(t1);
-        main.add(t2);
+        main.add(new JScrollPane(t1,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
+        main.add(new JScrollPane(t2,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
+        t1.setLineWrap(true);
+        t2.setLineWrap(true);
         jp.add(main,BorderLayout.CENTER);
         
         JPanel bottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -79,7 +82,8 @@ public class Formatter {
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stsel, stsel);
             }
         });
-
+        
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }
     
